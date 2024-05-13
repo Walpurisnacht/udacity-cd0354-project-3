@@ -28,4 +28,4 @@ after_success:
 - docker push walpurgisnacht/udagram-reverseproxy:v1
 - docker push walpurgisnacht/udagram-api-feed:v1
 - docker push walpurgisnacht/udagram-api-user:v1
-- docker push walpurgisnacht/udagram-frontend:v2
+- docker push walpurgisnacht/udagram-frontend:v1
