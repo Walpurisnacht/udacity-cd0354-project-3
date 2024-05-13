@@ -1,0 +1,31 @@
+language: node_js
+node_js:
+- 16
+
+services:
+- docker
+
+script:
+#Build
+- echo "Start build"
+- docker build -t udagram-reverseproxy ./udagram-reverseproxy
+- docker build -t udagram-api-feed ./udagram-api-feed
+- docker build -t udagram-api-user ./udagram-api-user
+- docker build -t udagram-frontend ./udagram-frontend
+
+#Taging
+- echo "Start tag"
+- docker tag udagram-reverseproxy walpurgisnacht/udagram-reverseproxy:v1
+- docker tag udagram-api-feed walpurgisnacht/udagram-api-feed:v1
+- docker tag udagram-api-user walpurgisnacht/udagram-api-user:v1
+- docker tag udagram-frontend walpurgisnacht/udagram-frontend:v1
+
+after_success:
+- docker logout
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker images
+- echo "Start push"
+- docker push walpurgisnacht/udagram-reverseproxy:v1
+- docker push walpurgisnacht/udagram-api-feed:v1
+- docker push walpurgisnacht/udagram-api-user:v1
+- docker push walpurgisnacht/udagram-frontend:v2
