@@ -15,17 +15,17 @@ script:
 
 #Taging
 - echo "Start tag"
-- docker tag udagram-reverseproxy walpurgisnacht/udagram-reverseproxy:v1
-- docker tag udagram-api-feed walpurgisnacht/udagram-api-feed:v1
-- docker tag udagram-api-user walpurgisnacht/udagram-api-user:v1
-- docker tag udagram-frontend walpurgisnacht/udagram-frontend:v1
+- docker tag udagram-reverseproxy walpurgisnacht/udagram-reverseproxy:v3
+- docker tag udagram-api-feed walpurgisnacht/udagram-api-feed:v3
+- docker tag udagram-api-user walpurgisnacht/udagram-api-user:v3
+- docker tag udagram-frontend walpurgisnacht/udagram-frontend:v3
 
 after_success:
 - docker logout
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker images
 - echo "Start push"
-- docker push walpurgisnacht/udagram-reverseproxy:v1
-- docker push walpurgisnacht/udagram-api-feed:v1
-- docker push walpurgisnacht/udagram-api-user:v1
-- docker push walpurgisnacht/udagram-frontend:v1
+- docker push walpurgisnacht/udagram-reverseproxy:v3
+- docker push walpurgisnacht/udagram-api-feed:v3
+- docker push walpurgisnacht/udagram-api-user:v3
+- docker push walpurgisnacht/udagram-frontend:v3
